@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#161d2a" />
+  <meta name="description" content="Resonance — a browser-based compatibility analysis engine." />
+  <title>Resonance — Compatibility Analysis Engine</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="ambient ambient-a" aria-hidden="true"></div>
+  <div class="ambient ambient-b" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <button class="brand" id="brandBtn" type="button" aria-label="Return to top">
+        <span class="brand-mark"><span></span></span>
+        <span class="brand-name">Resonance</span>
+        <span class="version">v2.4</span>
+      </button>
+
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="#methodology">Methodology</a>
+        <a href="#scoring">Scoring</a>
+      </nav>
+
+      <button class="btn btn-primary header-cta" type="button" data-action="start">Start analysis</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-dot"></span><span>Compatibility engine · 7 dimensions</span></div>
+        <h1>Discover your <span>compatibility</span></h1>
+        <p class="hero-text">Two signals, one reading. Resonance aligns personality, lifestyle, values and communication into a single confidence-weighted score — no guesswork, no hearts.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary btn-large" type="button" data-action="start">Begin the analysis</button>
+          <a class="btn btn-outline btn-large" href="#methodology">Read the methodology</a>
+        </div>
+        <div class="hero-meta">
+          <span><b id="questionCountHero">28</b> weighted inputs</span>
+          <span>7 scored dimensions</span>
+          <span>Confidence interval shown</span>
+        </div>
+      </div>
+
+      <div class="signal-panel panel">
+        <div class="signal-labels"><span>Signal A</span><span>Signal B</span></div>
+        <div class="signal-chart" aria-hidden="true">
+          <div class="signal-line"></div>
+          <div id="barsA" class="signal-bars signal-bars-a"></div>
+          <div id="barsB" class="signal-bars signal-bars-b"></div>
+        </div>
+        <div class="signal-footer"><span>Overlap index</span><strong id="liveOverlap">0.87</strong></div>
+      </div>
+    </section>
+
+    <section id="methodology" class="method-strip">
+      <article class="method-card">
+        <span class="method-index">(a)</span>
+        <h3>Profile both signals</h3>
+        <p>Enter two names, then map likes, dislikes and shared ground across each dimension.</p>
+      </article>
+      <article class="method-card">
+        <span class="method-index">(b)</span>
+        <h3>Weighted alignment</h3>
+        <p>Set overlap, ordinal distance and complementarity are combined into a weighted 0–100 index.</p>
+      </article>
+      <article class="method-card">
+        <span class="method-index">(c)</span>
+        <h3>Confidence report</h3>
+        <p>Every result includes a confidence band and a ranked breakdown that can be inspected.</p>
+      </article>
+    </section>
+
+    <div id="flowAnchor" class="flow-anchor"></div>
+
+    <section id="nameSection" class="flow-section hidden">
+      <div class="section-heading">
+        <h2>Enter the two signals</h2>
+        <span class="label-mono">Step 01 / 03</span>
+      </div>
+      <div class="name-grid">
+        <div class="panel form-card">
+          <p class="signal-caption a">Signal A</p>
+          <label for="nameA">First person's name</label>
+          <input id="nameA" type="text" maxlength="40" placeholder="e.g Tom " autocomplete="name" />
+        </div>
+        <div class="panel form-card">  
+          <p class="signal-caption b">Signal B</p>
+          <label for="nameB">Second person's name</label>
+          <input id="nameB" type="text" maxlength="40" placeholder="e.g kim" autocomplete="off" />
+        </div>
+      </div>
+      <p id="nameError" class="error hidden" role="alert"></p>
+      <div class="flow-actions">
+        <p class="microcopy">Both names required · browser-based analysis</p>
+        <button id="continueBtn" class="btn btn-primary" type="button">Continue to questionnaire</button>
+      </div>
+    </section>
+
+    <section id="questionSection" class="flow-section hidden">
+      <div class="section-heading question-heading">
+        <h2 id="stepTitle">Interests &amp; tastes</h2>
+        <span id="stepCounter" class="label-mono">Step 02 / 03 · 1 of 7 · 0/28 answered</span>
+      </div>
+      <div id="stepProgress" class="progress-steps"></div>
+      <p id="stepBlurb" class="section-blurb"></p>
+      <div id="questionList" class="question-list"></div>
+      <p id="submitError" class="error hidden" role="alert"></p>
+      <div class="flow-actions">
+        <button id="backBtn" class="btn btn-ghost" type="button">Back</button>
+        <button id="nextBtn" class="btn btn-primary" type="button">Next section</button>
+      </div>
+    </section>
+
+    <section id="resultSection" class="flow-section hidden">
+      <div id="resultMount"></div>
+    </section>
+
+    <section id="scoring" class="scoring-note">
+      <p class="label-mono">How the score is produced</p>
+      <p>Each answer pair is converted into a similarity value: set overlap for multi-select interests, ordinal distance for ranked choices, and trait distance for the personality scale. Traits where difference is often beneficial are scored for complementarity instead of sameness. Dimension scores are combined with fixed weights, adjusted by a values-and-communication interaction term, and passed through a non-linear calibration curve. The same answers always produce the same score.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>Resonance — a compatibility analysis engine.</span>
+      <span class="label-mono">Estimates from submitted answers, not predictions.</span>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
